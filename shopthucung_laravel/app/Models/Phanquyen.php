@@ -19,7 +19,7 @@ class Phanquyen extends Model
      */
     protected $table = 'phanquyen';
 
-    /**
+    /**`
      * The primary key for the model.
      *
      * @var string
