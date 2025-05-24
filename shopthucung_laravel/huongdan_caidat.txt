@@ -49,7 +49,7 @@ Bước 5: Chỉnh lại file .env
 DB_CONNECTION=mysql  	//kiểu kết nối
 DB_HOST=127.0.0.1   	//host truy cập
 DB_PORT=3306    	//port mysql
-DB_DATABASE=larave 	//tên database
+DB_DATABASE=c 	//tên database
 DB_USERNAME=root  	//user
 DB_PASSWORD=         	//có pass thì nhập
 
