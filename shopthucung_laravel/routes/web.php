@@ -75,6 +75,8 @@ Route::prefix('/')->middleware('admin.login')->group(function(){
     Route::get('/admin/product/edit/{product}', [ProductController::class, 'edit'])->name('product.edit');
     Route::put('/admin/product/update/{product}', [ProductController::class, 'update'])->name('product.update');
     Route::delete('/admin/product/{product}/destroy', [ProductController::class, 'destroy'])->name('product.destroy');
+    Route::delete('/admin/product/delete-multiple', [ProductController::class, 'deleteMultiple'])->name('product.delete-multiple');
+
     
     Route::get('/admin/danhmuc', [DanhmucController::class, 'index'])->name('danhmuc.index');
     Route::get('/admin/danhmuc/create', [DanhmucController:: class, 'create'])->name('danhmuc.create');

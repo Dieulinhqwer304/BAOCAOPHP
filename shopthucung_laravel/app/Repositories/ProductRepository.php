@@ -21,4 +21,7 @@ class ProductRepository implements IProductRepository{
     public function deleteProduct($id){
         $this->findProduct($id)->delete();
     }
+     public function findByName(string $name) {
+        return Sanpham::where('tensp', $name)->first();
+    }
 }
