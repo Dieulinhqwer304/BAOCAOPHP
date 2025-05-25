@@ -8,7 +8,7 @@ use App\Http\Controllers\{
     HomeController,
     AuthController,
     OrderViewController,
-    CartController
+    CartController,CommentController
 };
 
 /*
@@ -23,27 +23,31 @@ use App\Http\Controllers\{
 */
 
 //Frontend
-Route::get('/', [HomeController:: class, 'index']);
+    Route::get('/', [HomeController:: class, 'index']);
 
-Route::get('/sanpham/detail/{id}', [HomeController:: class, 'detail'])->name('detail');
-Route::get('/congiong', [HomeController:: class, 'congiong']);
-Route::get('/search', [HomeController:: class, 'search'])->name('search');
-Route::get('/viewAll', [HomeController:: class, 'viewAll'])->name('viewAll');
-Route::get('/services', [HomeController:: class, 'services'])->name('services');
-//cart
-Route::get('cart', [CartController::class, 'cart'])->name('cart');
-Route::get('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add_to_cart');
-Route::get('add-go-to-cart/{id}', [CartController::class, 'addGoToCart'])->name('add_go_to_cart');
-Route::patch('update-cart', [CartController::class, 'update'])->name('update_cart');
-Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove_from_cart');
+    Route::get('/sanpham/detail/{id}', [HomeController:: class, 'detail'])->name('detail');
+    Route::get('/congiong', [HomeController:: class, 'congiong']);
+    Route::get('/search', [HomeController:: class, 'search'])->name('search');
+    Route::get('/viewAll', [HomeController:: class, 'viewAll'])->name('viewAll');
+    Route::get('/services', [HomeController:: class, 'services'])->name('services');
+    //cart
+    Route::get('cart', [CartController::class, 'cart'])->name('cart');
+    Route::get('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add_to_cart');
+    Route::get('add-go-to-cart/{id}', [CartController::class, 'addGoToCart'])->name('add_go_to_cart');
+    Route::patch('update-cart', [CartController::class, 'update'])->name('update_cart');
+    Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove_from_cart');
 
-Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
-Route::post('/dathang', [CartController:: class, 'dathang'])->name('dathang');
-Route::post('/vnpay', [CartController:: class, 'vnpay'])->name('vnpay');
-Route::get('/thongbaodathang', [CartController:: class, 'thongbaodathang'])->name('thongbaodathang');
+    Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+    Route::post('/dathang', [CartController:: class, 'dathang'])->name('dathang');
+    Route::post('/vnpay', [CartController:: class, 'vnpay'])->name('vnpay');
+    Route::get('/thongbaodathang', [CartController:: class, 'thongbaodathang'])->name('thongbaodathang');
+    Route::get('/comments/{sanpham_id}', [CommentController::class, 'index']);
+    Route::post('/comments', [CommentController::class, 'store'])->name('comment.post');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
+    Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comment.update');
 
-//order
-Route::get('/donhang', [OrderViewController:: class, 'donhang']);
+    //order
+    Route::get('/donhang', [OrderViewController:: class, 'donhang']);
 
 Route::prefix('/')->middleware('orderview')->group(function(){
     Route::get('/donhang/edit/{id}', [OrderViewController::class, 'edit'])->name('donhang.edit');
@@ -88,6 +92,8 @@ Route::prefix('/')->middleware('admin.login')->group(function(){
     Route::get('/admin/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/admin/orders/edit/{orders}', [OrderController::class, 'edit'])->name('orders.edit');
     Route::put('/admin/orders/update/{orders}', [OrderController::class, 'update'])->name('orders.update');
+
+
 });
 
 

@@ -28,15 +28,21 @@ class DanhmucController extends Controller
     }
 
     public function store(Request $request){
+    $messages = [
+        'ten_danhmuc.unique' => 'Tên danh mục này đã tồn tại, vui lòng chọn tên khác.',
+        'ten_danhmuc.required' => 'Tên danh mục không được để trống.',
+    ];
 
-        $validatedData = $request->validate([
-            'ten_danhmuc' => 'required',
-        ]);
+    $validatedData = $request->validate([
+        'ten_danhmuc' => 'required|unique:danhmuc,ten_danhmuc',
+    ], $messages);
 
-        $this->DanhmucRepository->storeDanhmuc($validatedData);
+    $this->DanhmucRepository->storeDanhmuc($validatedData);
 
-        return redirect()->route('danhmuc.index');
+    return redirect()->route('danhmuc.index')->with('success', 'Thêm danh mục thành công');
     }
+
+
 
     public function edit($id){
         $danhmuc = $this->DanhmucRepository->findDanhmuc($id);

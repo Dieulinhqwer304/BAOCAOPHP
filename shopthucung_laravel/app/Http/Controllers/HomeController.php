@@ -45,11 +45,23 @@ class HomeController extends Controller
     }
 
     public function detail($id){
-        // Lấy thông tin của sản phẩm dựa trên $id
-        $sanpham = Sanpham::findOrFail($id);
-        $randoms = $this->sanphamRepository->randomProduct()->take(5);
-        return view('pages.detail', ['sanpham' => $sanpham, 'randoms' => $randoms]);
-    }
+    // Lấy thông tin sản phẩm
+    $sanpham = Sanpham::findOrFail($id);
+    
+    // Lấy 5 sản phẩm ngẫu nhiên
+    $randoms = $this->sanphamRepository->randomProduct()->take(5);
+
+    // Lấy bình luận của sản phẩm này, kèm theo user
+    $comments = \App\Models\Comment::where('sanpham_id', $id)->with('user')->get();
+
+    // Truyền thêm $comments sang view
+    return view('pages.detail', [
+        'sanpham' => $sanpham, 
+        'randoms' => $randoms,
+        'comments' => $comments,
+    ]);
+}
+
     
     public function search(Request $request){
         $searchs = $this->sanphamRepository->searchProduct($request);

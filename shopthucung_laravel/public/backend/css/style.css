@@ -1,3 +1,71 @@
-.text-white{
-	color: white!important;
+.text-white {
+    color: white !important;
+}
+
+#commentForm textarea {
+    width: 100%;
+    resize: vertical;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    min-height: 50px;
+}
+
+.btn-submit {
+    margin-top: 8px;
+    padding: 6px 15px;
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.comment-item {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.comment-content b {
+    font-weight: 600;
+}
+
+.comment-content .content-text {
+    margin: 6px 0;
+}
+
+.comment-actions {
+    margin-top: 4px;
+}
+
+.comment-actions button {
+    background: none;
+    border: none;
+    color: #1877f2;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 13px;
+}
+
+.comment-actions button:hover {
+    text-decoration: underline;
+}
+.comment-section {
+    background-color: #f9f9f9;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.product-description {
+    margin-bottom: 24px;
 }
