@@ -79,4 +79,7 @@ class HomeController extends Controller
     public function services(){
         return view('pages.services');
     }
+    // public function donhang(){
+    //     return view('pages.donhang');
+    // }
 }
