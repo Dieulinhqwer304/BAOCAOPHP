@@ -6,14 +6,14 @@
     <i class="fa fa-chevron-right next" aria-hidden="true"></i>
 
     <div class="post-wrapper">
+        <!-- <div class="post">
+            <img src="{{ asset('frontend/img/banner1.png')}}" alt="">
+        </div> -->
         <div class="post">
-            <img src="{{ asset('frontend/img/bn1.jpg')}}" alt="">
+            <img src="{{ asset('frontend/img/banner2.png')}}" alt="">
         </div>
         <div class="post">
-            <img src="{{ asset('frontend/img/bn2.jpg')}}" alt="">
-        </div>
-        <div class="post">
-            <img src="{{ asset('frontend/img/bn3.jpg')}}" alt="">
+            <img src="{{ asset('frontend/img/banner1.png')}}" alt="">
         </div>
     </div>
 

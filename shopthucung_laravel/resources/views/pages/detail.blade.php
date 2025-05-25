@@ -83,7 +83,8 @@
         <div class="body__mainTitle">
             <h2>MÔ TẢ SẢN PHẨM</h2>
         </div>
-            {{$sanpham->mota}}    
+        <textarea class="form-control" id="mota" name="mota" rows="15" disabled style="font-size: 16px;background-color: transparent;border: none;color: #555;padding: 10px 0px;resize: none;overflow: hidden;">{{$sanpham->mota}}</textarea>
+              
         <hr />
     
         <!--Bình luận sản phẩm-->

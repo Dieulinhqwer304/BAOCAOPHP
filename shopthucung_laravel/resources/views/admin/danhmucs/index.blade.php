@@ -16,7 +16,6 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Id</th>
         <th>Tên danh mục</th>
         <th colspan="2">Actions</th>
       </tr>
@@ -25,16 +24,16 @@
     <tbody>
       @foreach($Danhmucs as $danhmuc)
       <tr>
-        <td>{{$danhmuc->id_danhmuc}}</td>
         <td>{{$danhmuc->ten_danhmuc}}</td>
-        <td colspan="2">
-          <a href="{{ route('danhmuc.edit', ['danhmuc' => $danhmuc]) }}" class="btn btn-warning mb-2">Edit</a>
-          <form method="post" action="{{route('danhmuc.destroy', ['danhmuc' => $danhmuc])}}">
+        <td colspan="2" style="display: flex; justify-content: start;">
+          <div><a href="{{ route('danhmuc.edit', ['danhmuc' => $danhmuc]) }}" class="btn btn-warning mb-2">Edit</a></div>
+          <div style="margin-left: 10px;"><form method="post" action="{{route('danhmuc.destroy', ['danhmuc' => $danhmuc])}}">
               @csrf
               @method('delete')
               <input type="submit" class="btn btn-danger" value="Delete"
               onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này không?')">
-          </form>
+          </form></div>
+        
         </td>
       </tr>
       @endforeach

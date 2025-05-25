@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý cửa hàng thú cưng</title>
-    <link rel="shortcut icon" type="image/png" href="{{ asset('frontend/img/logo.jpg')}}"/>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('frontend/img/LOGO.png')}}"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -25,7 +25,7 @@
         <div class="navbar">
             <div class="navbar__left">
                 <a href="{{ URL::to('/')}}" class="navbar__logo">
-                    <img src="{{ asset('frontend/img/logo.jpg') }}" alt="">
+                    <img src="{{ asset('frontend/img/LOGO.png') }}" alt="">
                 </a>
 
                 <div class="navbar__menu">
