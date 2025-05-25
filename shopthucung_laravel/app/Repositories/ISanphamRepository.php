@@ -11,4 +11,6 @@ interface ISanphamRepository{
     public function meoGiong();
     public function searchProduct($data);
     public function viewAllWithPagi();
+    public function getAllByDanhMuc($request);
+
 }

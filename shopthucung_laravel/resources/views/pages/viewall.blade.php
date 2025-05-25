@@ -3,9 +3,19 @@
 <!-- Tất cả sản phẩm -->
 <div class="body">
 
-    <div class="body__mainTitle">
-        <h2>TẤT CẢ SẢN PHẨM</h2>
-    </div>
+   <div class="body__mainTitle">
+    <h2>
+        @php
+            $ten = 'TẤT CẢ SẢN PHẨM';
+            if(request('loai')) {
+                $dm = $danhmucs->firstWhere('id_danhmuc', request('loai'));
+                if ($dm) {
+                    $ten = 'SẢN PHẨM: ' . strtoupper($dm->ten_danhmuc);
+                }
+            }
+        @endphp
+        {{ $ten }}
+    </h2>
 
     <div>
         <div class="row">

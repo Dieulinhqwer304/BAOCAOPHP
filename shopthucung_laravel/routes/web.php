@@ -24,12 +24,14 @@ use App\Http\Controllers\{
 
 //Frontend
     Route::get('/', [HomeController:: class, 'index']);
-
+    Route::get('/api/danhmuc', [DanhmucController::class, 'getDanhmucs']);
     Route::get('/sanpham/detail/{id}', [HomeController:: class, 'detail'])->name('detail');
     Route::get('/congiong', [HomeController:: class, 'congiong']);
     Route::get('/search', [HomeController:: class, 'search'])->name('search');
     Route::get('/viewAll', [HomeController:: class, 'viewAll'])->name('viewAll');
     Route::get('/services', [HomeController:: class, 'services'])->name('services');
+    // Route::get('/donhang', [HomeController:: class, 'donhang'])->name('donhang');
+
     //cart
     Route::get('cart', [CartController::class, 'cart'])->name('cart');
     Route::get('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add_to_cart');

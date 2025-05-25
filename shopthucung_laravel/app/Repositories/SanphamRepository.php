@@ -3,6 +3,7 @@ namespace App\Repositories;
 
 use App\Repositories\ISanphamRepository;
 use App\Models\Sanpham;
+use App\Models\Danhmuc;
 
 class SanphamRepository implements ISanphamRepository{
 
@@ -34,16 +35,38 @@ class SanphamRepository implements ISanphamRepository{
     {
         return Sanpham::where('id_danhmuc', 7)->orderBy('id_sanpham', 'desc')->take(5)->get();
     }
-    public function searchProduct($data)
+    
+     public function searchProduct($data)
     {
         $searchKeyword = $data->input('tukhoa');
-        return Sanpham::where('tensp', 'like', '%' . $searchKeyword . '%')->paginate(5);
+        $loai = $data->input('loai');
+
+        $query = Sanpham::query();
+
+        if ($searchKeyword) {
+            $query->where('tensp', 'like', '%' . $searchKeyword . '%');
+        }
+
+        if ($loai) {
+            $query->where('id_danhmuc', $loai);
+        }
+
+        return $query->paginate(5);
     }
+
     
     public function viewAllWithPagi()
     {
         return Sanpham::paginate(10);
     }
-    
+     public function getAllByDanhMuc($request)
+    {
+        $danhmucs = Danhmuc::all();
+        $query = Sanpham::query();
+        if ($request->has('loai')) {
+            $query->where('id_danhmuc', $request->loai);
+        }
+        return $query->paginate(10);
+    }
 
 }

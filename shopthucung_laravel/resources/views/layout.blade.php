@@ -29,19 +29,24 @@
                     <img src="{{ asset('frontend/img/LOGO.png') }}" alt="">
                 </a>
 
-                <div class="navbar__menu">
-                    <i id="bars" class="fa fa-bars" aria-hidden="true"></i>
-                    <ul>
-                        <li><a href="{{ URL::to('/')}}">Trang chủ</a></li>
-                        <li><a href="http://127.0.0.1:8000/viewAll">Sản Phẩm</a></li>
-                        <li>
-                            <a href="{{ URL::to('/services')}}">Dịch vụ</a>
-                        </li>
-                        <li>
-                            <a href="{{ URL::to('/donhang')}}">Đơn hàng</a>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="navbar__menu-list">
+                    <li class="{{ request()->is('/') ? 'active' : '' }}">
+                        <a href="{{ URL::to('/') }}">Trang chủ</a>
+                    </li>
+
+                    <li class="dropdown {{ request()->is('viewAll*') ? 'active' : '' }}" id="sanpham-dropdown">
+                        <a href="{{ URL::to('/viewAll') }}">Sản phẩm </a>
+                        <ul class="dropdown-menu" id="dropdown-danhmuc"></ul>
+                    </li>
+
+                    <li class="{{ request()->is('services') ? 'active' : '' }}">
+                        <a href="{{ URL::to('/services') }}">Dịch vụ</a>
+                    </li>
+
+                    <li class="{{ request()->is('donhang') ? 'active' : '' }}">
+                        <a href="{{ URL::to('/donhang') }}">Đơn hàng</a>
+                    </li>
+                </ul>
 
             </div>
 
@@ -134,6 +139,29 @@
     </footer>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+        <script>
+        let danhMucLoaded = false;
+
+        document.getElementById('sanpham-dropdown').addEventListener('mouseenter', function() {
+            if (danhMucLoaded) return;
+
+            fetch('/api/danhmuc')
+                .then(response => response.json())
+                .then(data => {
+                    const ul = document.getElementById('dropdown-danhmuc');
+                    data.forEach(dm => {
+                        const li = document.createElement('li');
+                        const a = document.createElement('a');
+                        a.href = `/viewAll?loai=${dm.id_danhmuc}`;
+                        a.textContent = dm.ten_danhmuc;
+                        li.appendChild(a);
+                        ul.appendChild(li);
+                    });
+                    danhMucLoaded = true;
+                })
+                .catch(error => console.error('Lỗi khi tải danh mục:', error));
+        });
+    </script>
     <script>
         //Slider using Slick
         $(document).ready(function () {

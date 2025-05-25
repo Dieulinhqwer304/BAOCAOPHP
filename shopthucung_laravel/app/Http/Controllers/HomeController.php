@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Sanpham;
+use App\Models\Danhmuc;
 
 use App\Repositories\ISanphamRepository;
 
@@ -68,12 +69,14 @@ class HomeController extends Controller
         return view('pages.search')->with('searchs', $searchs)->with('tukhoa', $request->input('tukhoa'));
     }
 
-    public function viewAll(){
-        $viewAllPaginations = $this->sanphamRepository->viewAllWithPagi();
-        return view('pages.viewall', ['sanphams' => $viewAllPaginations]);
+    public function viewAll(Request $request){
+        $danhmucs = Danhmuc::all();
+        $viewAllPaginations = $this->sanphamRepository->getAllByDanhMuc($request);
+        // $viewAllPaginations = $query->paginate(12);
+
+        return view('pages.viewall', ['sanphams' => $viewAllPaginations, 'danhmucs' => $danhmucs]);
     }
     public function services(){
         return view('pages.services');
     }
-    
 }
