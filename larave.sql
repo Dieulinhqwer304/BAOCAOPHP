@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 25, 2025 lúc 07:14 AM
--- Phiên bản máy phục vụ: 10.4.28-MariaDB
+-- Thời gian đã tạo: Th5 25, 2025 lúc 12:04 PM
+-- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -52,6 +52,33 @@ INSERT INTO `chitiet_donhang` (`id_ctdonhang`, `tensp`, `soluong`, `giamgia`, `g
 (10, 'Pate Cho Mèo – Pate Fit4 Cats -Cá Ngừ Và Thanh Cua 160g', 1, 0, 20000, 72000, 2, 11, 3),
 (11, 'Cheems', 1, 0, 20000, 72000, 4, 12, 2),
 (12, 'Pate Cho Mèo – Pate Fit4 Cats -Cá Ngừ Và Thanh Cua 160g', 1, 0, 20000, 72000, 2, 12, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `sanpham_id` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `comments`
+--
+
+INSERT INTO `comments` (`id`, `user_id`, `sanpham_id`, `content`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'Đây là bình luận thử nghiệm bằng tinker', '2025-05-25 01:47:00', '2025-05-25 01:47:00'),
+(2, 1, 1, 'Test bình luận', '2025-05-25 01:48:18', '2025-05-25 01:48:18'),
+(6, 5, 14, 'ka', '2025-05-25 02:18:39', '2025-05-25 02:18:39'),
+(7, 5, 14, 'la', '2025-05-25 02:48:52', '2025-05-25 02:48:52'),
+(9, 5, 30, 'hêlo', '2025-05-25 02:58:15', '2025-05-25 02:58:15'),
+(10, 5, 30, 'bùi', '2025-05-25 02:58:24', '2025-05-25 02:58:24');
 
 -- --------------------------------------------------------
 
@@ -127,7 +154,8 @@ INSERT INTO `khachhang` (`id_kh`, `hoten`, `email`, `password`, `diachi`, `sdt`,
 (1, 'teo', 'teo@gmail.com', '$2y$12$o42vmZrn2TzpqtP0NJ/VyOd0qgv2coPm76eyZ/ZNwUgBHNUUW6H2y', 'Đống Đa, Hà nội', 379487241, 2),
 (2, 'admin', 'admin@gmail.com', '$2y$12$/NpqKoSr.zwBa83nJfw8KuHTYjVmH51H/boJ.CxtIR8Sn/tTVg.NS', 'Đống Đa, Hà nội', 379487352, 1),
 (3, 'demotk', 'demotk@gmail.com', '$2y$12$z66Zyr0M/Ag7j6iQZvwjjuuqL4yQP/k68uo3Cmq0kxKghvuQFzjpK', 'demotk', 364877529, 2),
-(4, 'dieulinh', 'dlinh30042004@gmail.com', '$2y$12$/NpqKoSr.zwBa83nJfw8KuHTYjVmH51H/boJ.CxtIR8Sn/tTVg.NS', '102', 359723803, 1);
+(4, 'dieulinh', 'dlinh30042004@gmail.com', '$2y$12$/NpqKoSr.zwBa83nJfw8KuHTYjVmH51H/boJ.CxtIR8Sn/tTVg.NS', '102', 359723803, 1),
+(5, 'hoà nguyễn', 'hoacutehd2003@gmail.com', '$2y$12$ebsDSfsT/w/yLAyfHmqkr.m8TuEhy4CY4VhCqaibCspDj742B4sx2', 'Chùa Bộc', 364273858, 2);
 
 -- --------------------------------------------------------
 
@@ -262,6 +290,14 @@ ALTER TABLE `chitiet_donhang`
   ADD KEY `chitiet_donhang_id_dathang_foreign` (`id_dathang`);
 
 --
+-- Chỉ mục cho bảng `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_comments_user` (`user_id`),
+  ADD KEY `fk_comments_sanpham` (`sanpham_id`);
+
+--
 -- Chỉ mục cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
@@ -319,6 +355,12 @@ ALTER TABLE `chitiet_donhang`
   MODIFY `id_ctdonhang` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT cho bảng `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
@@ -334,7 +376,7 @@ ALTER TABLE `dathang`
 -- AUTO_INCREMENT cho bảng `khachhang`
 --
 ALTER TABLE `khachhang`
-  MODIFY `id_kh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_kh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
@@ -363,6 +405,13 @@ ALTER TABLE `sanpham`
 --
 ALTER TABLE `chitiet_donhang`
   ADD CONSTRAINT `chitiet_donhang_id_dathang_foreign` FOREIGN KEY (`id_dathang`) REFERENCES `dathang` (`id_dathang`);
+
+--
+-- Các ràng buộc cho bảng `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `fk_comments_sanpham` FOREIGN KEY (`sanpham_id`) REFERENCES `sanpham` (`id_sanpham`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_comments_user` FOREIGN KEY (`user_id`) REFERENCES `khachhang` (`id_kh`) ON DELETE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `khachhang`
