@@ -3,83 +3,74 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\Sanpham;
 use App\Models\Danhmuc;
-
 use App\Repositories\ISanphamRepository;
 
 class HomeController extends Controller
 {
-
     private $sanphamRepository;
 
     public function __construct(ISanphamRepository $sanphamRepository) {
         $this->sanphamRepository = $sanphamRepository;
     }
 
-    public function index(){
-        $alls = $this->sanphamRepository->allProduct();
-        $sanphams = $this->sanphamRepository->relatedProduct();
-        $dogproducts = $this->sanphamRepository->dogProduct();
-        $catproducts = $this->sanphamRepository->catProduct();
-        $choGiongs = $this->sanphamRepository->choGiong();
-        $meoGiongs = $this->sanphamRepository->meoGiong();
-        return view('pages.home', [
-            'alls' => $alls,
-            'sanphams' => $sanphams,
-            'dogproducts' => $dogproducts,
-            'catproducts' => $catproducts,
-            'choGiongs' => $choGiongs,
-            'meoGiongs' => $meoGiongs,
-        ]);
-    }
+    public function index() {
+    $alls = $this->sanphamRepository->allProduct();
+    $sanphams = $this->sanphamRepository->featuredProducts();
+    $gucciProducts = $this->sanphamRepository->getProductsByCategory(9);
+    $diorProducts = $this->sanphamRepository->getProductsByCategory(10);
+    $hermesProducts = $this->sanphamRepository->getProductsByCategory(11);
+    $chanelProducts = $this->sanphamRepository->getProductsByCategory(12);
 
-    public function congiong(){
-        $choGiongs = $this->sanphamRepository->choGiong();
-        $meoGiongs = $this->sanphamRepository->meoGiong();
-
-        return view('pages.congiong', [
-            'choGiongs' => $choGiongs,
-            'meoGiongs' => $meoGiongs,
-        ]);
-    }
-
-    public function detail($id){
-    // Lấy thông tin sản phẩm
-    $sanpham = Sanpham::findOrFail($id);
-    
-    // Lấy 5 sản phẩm ngẫu nhiên
-    $randoms = $this->sanphamRepository->randomProduct()->take(5);
-
-    // Lấy bình luận của sản phẩm này, kèm theo user
-    $comments = \App\Models\Comment::where('sanpham_id', $id)->with('user')->get();
-
-    // Truyền thêm $comments sang view
-    return view('pages.detail', [
-        'sanpham' => $sanpham, 
-        'randoms' => $randoms,
-        'comments' => $comments,
+    return view('pages.home', [
+        'alls' => $alls,
+        'sanphams' => $sanphams,
+        'gucciProducts' => $gucciProducts,
+        'diorProducts' => $diorProducts,
+        'hermesProducts' => $hermesProducts,
+        'chanelProducts' => $chanelProducts,
     ]);
 }
 
-    
-    public function search(Request $request){
+    public function congiong() {
+        $danhmucs = Danhmuc::all();
+        return view('pages.congiong', [
+            'danhmucs' => $danhmucs,
+        ]);
+    }
+
+    public function detail($id) {
+        $sanpham = Sanpham::findOrFail($id);
+        $randoms = $this->sanphamRepository->randomProduct()->take(5);
+        $comments = \App\Models\Comment::where('sanpham_id', $id)->with('user')->get();
+
+        return view('pages.detail', [
+            'sanpham' => $sanpham, 
+            'randoms' => $randoms,
+            'comments' => $comments,
+        ]);
+    }
+
+    public function search(Request $request) {
         $searchs = $this->sanphamRepository->searchProduct($request);
         return view('pages.search')->with('searchs', $searchs)->with('tukhoa', $request->input('tukhoa'));
     }
 
-    public function viewAll(Request $request){
+    public function viewAll(Request $request) {
         $danhmucs = Danhmuc::all();
         $viewAllPaginations = $this->sanphamRepository->getAllByDanhMuc($request);
-        // $viewAllPaginations = $query->paginate(12);
 
-        return view('pages.viewall', ['sanphams' => $viewAllPaginations, 'danhmucs' => $danhmucs]);
+        return view('pages.viewall', [
+            'sanphams' => $viewAllPaginations,
+            'danhmucs' => $danhmucs,
+        ]);
     }
-    public function services(){
-        return view('pages.services');
+
+    public function services() {
+        $danhmucs = Danhmuc::all();
+        return view('pages.services', [
+            'danhmucs' => $danhmucs,
+        ]);
     }
-    // public function donhang(){
-    //     return view('pages.donhang');
-    // }
 }
