@@ -24,7 +24,7 @@ class SanphamRepository implements ISanphamRepository
             ->take(5)
             ->get();
     }
-
+/
     public function relatedProduct()
     {
         return Sanpham::with('danhmuc')
@@ -32,7 +32,7 @@ class SanphamRepository implements ISanphamRepository
             ->take(10)
             ->get();
     }
-
+/
     public function randomProduct()
     {
         return Sanpham::with('danhmuc')
@@ -58,13 +58,13 @@ class SanphamRepository implements ISanphamRepository
 
         return $query->paginate(5);
     }
-
+/* Lấy danh sách sản phẩm với phân trang */
     public function viewAllWithPagi()
     {
         return Sanpham::with('danhmuc')
             ->paginate(10);
     }
-
+/* Lấy danh sách sản phẩm theo danh mục */
     public function getAllByDanhMuc(Request $request)
     {
         $query = Sanpham::with('danhmuc');
@@ -73,7 +73,6 @@ class SanphamRepository implements ISanphamRepository
         }
         return $query->paginate(10);
     }
-
     public function getProductsByCategory($categoryId)
     {
         return Sanpham::with('danhmuc')
