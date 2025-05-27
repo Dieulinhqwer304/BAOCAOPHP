@@ -24,7 +24,7 @@ class SanphamRepository implements ISanphamRepository
             ->take(5)
             ->get();
     }
-/
+
     public function relatedProduct()
     {
         return Sanpham::with('danhmuc')
@@ -32,7 +32,7 @@ class SanphamRepository implements ISanphamRepository
             ->take(10)
             ->get();
     }
-/
+
     public function randomProduct()
     {
         return Sanpham::with('danhmuc')
