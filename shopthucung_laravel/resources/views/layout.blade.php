@@ -97,7 +97,7 @@
 
     <div class="go-to-top"><i class="fas fa-chevron-up"></i></div>
 
-   // ... existing code ...
+
     <div class="go-to-top"><i class="fas fa-chevron-up"></i></div>
 
    <footer>
