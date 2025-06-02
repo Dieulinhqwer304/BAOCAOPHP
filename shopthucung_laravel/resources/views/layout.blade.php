@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,45 +97,50 @@
 
     <div class="go-to-top"><i class="fas fa-chevron-up"></i></div>
 
-    <footer>
-        <div class="footer">
-            <div class="footer__title">
-                <span>Liên hệ</span>
-                <div class="footer__social">
-                    <a href="facebook.com/trieuetam" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-google"></i></a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer__info">
 
-            <div class="footer__info-content">
-                <h3>Giới thiệu</h3>
-                <p>Website quản lý, mua bán thú cưng</p>
-            </div>
+    <div class="go-to-top"><i class="fas fa-chevron-up"></i></div>
 
+   <footer>
+  <div class="footer">
+    <div class="footer__title">
+      <span>Liên hệ với chúng tôi</span>
+      <div class="footer__social">
+        <a href="https://facebook.com/trieuetam" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/tai_khoan_cua_ban" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-google"></i></a>
+      </div>
+    </div>
+  </div>
 
+  <div class="footer__info">
+    <div class="footer__info-content">
+      <h3>Về SACHA</h3>
+      <p>Chúng tôi cam kết mang đến những sản phẩm và dịch vụ tốt nhất.</p>
+    </div>
 
-            <div class="footer__info-content">
-                <h3>Liên hệ</h3>
-                <p>Địa chỉ: quận 6 TPGCM VN</p>
-                <p>Email: chube@gmail.com</p>
-                <p>Sđt: 09997676</p>
-            </div>
+    <div class="footer__info-content">
+      <h3>Thương hiệu</h3>
+      <p><a href="#">CHANEL</a></p>
+      <p><a href="#">CHRISTIAN DIOR</a></p>
+      <p><a href="#">HERMES</a></p>
+      <p><a href="#">LOUIS VUITTON</a></p>
+      <p><a href="#">GUCCI</a></p>
+    </div>
 
-            <div class="footer__info-content">
-                <h3>Fanpage</h3>
-                <p><iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FC%25E1%25BB%25ADa-h%25C3%25A0ng-S%25E1%25BA%25A3n-ph%25E1%25BA%25A9m-D%25C3%25A0nh-cho-Th%25C3%25BA-C%25C6%25B0ng-100178969197228%2F%3Fref%3Dpages_you_manage&tabs=timeline&width=300px&height=150px&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="100%" height="150px" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe></p>
-            </div>
+    <div class="footer__info-content">
+      <h3>Liên hệ</h3>
+      <p><i class="fas fa-home"></i> Địa chỉ: Số 12, Chùa Bộc, Đống Đa, Hà Nội</p>
+      <p><i class="fas fa-envelope"></i> Email: sacha@gmail.com</p>
+      <p><i class="fas fa-phone"></i> Sđt: 1900 1596</p>
+    </div>
+  </div>
 
-        </div>
+  <div class="footer__copyright">
+    <center>© 2025 Sacha Shop. All rights reserved.</center>
+  </div>
+</footer>
 
-        <div class="footer__copyright">
-            <center> 2022 All rights reserved.</center>
-        </div>
-    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
         <script>
