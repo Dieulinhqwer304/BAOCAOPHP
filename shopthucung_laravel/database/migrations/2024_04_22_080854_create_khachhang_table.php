@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password', 100)->nullable();
             $table->string('diachi')->nullable();
             $table->integer('sdt')->nullable();
-            $table->integer('id_phanquyen')->index('fk_dk');
+            $table->integer('id_phanquyen')->index();
         });
     }
 

@@ -35,7 +35,7 @@
                         Bạn chưa có tài khoản? <a class="account-register" href="{{ URL::to('register')}}">Đăng ký ngay</a>
                     </div>
                     <div class="dont-have-account">
-                        Quên mật khẩu? <a class="account-register" href="#">Lấy lại mật khẩu</a>
+                        Quên mật khẩu? <a class="account-register" href="{{ route('password.forgot') }}">Lấy lại mật khẩu</a>
                     </div>
                 </form>
             </div>

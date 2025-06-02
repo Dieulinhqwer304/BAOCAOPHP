@@ -8,7 +8,8 @@ use App\Http\Controllers\{
     HomeController,
     AuthController,
     OrderViewController,
-    CartController,CommentController
+    CartController,CommentController,
+    ForgotPasswordController
 };
 
 /*
@@ -60,6 +61,19 @@ Route::post('/login', [AuthController:: class, 'loginPost'])->name('login');
 Route::get('/register', [AuthController:: class, 'register']);
 Route::post('/register', [AuthController:: class, 'registerPost'])->name('register');
 Route::delete('/logout', [AuthController:: class, 'logout'])->name('logout');
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotForm'])->name('password.forgot');
+
+// Gửi email khôi phục mật khẩu
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink'])->name('password.email');
+
+// Hiển thị form đặt lại mật khẩu (kèm token)
+Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
+
+// Xử lý đặt lại mật khẩu
+Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('password.update');
+
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink'])->name('forgot.send');
+
 
 
 
