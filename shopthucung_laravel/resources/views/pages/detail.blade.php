@@ -65,34 +65,15 @@
         <div class="body__mainTitle">
             <h2>MÔ TẢ SẢN PHẨM</h2>
         </div>
-        <div class="product-description">
-            <textarea class="form-control" id="mota" name="mota" rows="4" disabled
-                style="font-size: 16px; background-color: transparent; border: none; color: #555; padding: 10px 0px; resize: none; overflow: hidden;">
-                {{ $sanpham->mota }}
-            </textarea>
-            <button id="toggleMotaBtn" style="margin-top: 5px; background: none; border: none; color: #1877f2; cursor: pointer;">Xem thêm</button>
+        <div class="product-description" style="font-size: 16px; color: #555; padding: 10px 0px;">
+            {!! nl2br(e($sanpham->mota)) !!}
         </div>
-        <script>
-            const btn = document.getElementById("toggleMotaBtn");
-            const mota = document.getElementById("mota");
 
-            let expanded = false;
-            btn.addEventListener("click", () => {
-                expanded = !expanded;
-                if (expanded) {
-                    mota.rows = 15; // Hiển thị toàn bộ nội dung (bạn có thể tăng thêm)
-                    btn.textContent = "Thu gọn";
-                } else {
-                    mota.rows = 4; // Hiển thị ngắn gọn ban đầu
-                    btn.textContent = "Xem thêm";
-                }
-            });
-        </script>
 
         <hr />
 
         <!-- Bình luận sản phẩm -->
-        <div class="comment-section">
+ <!--       <div class="comment-section">
             <h3>Bình luận</h3>
 
             @if(Auth::check())
@@ -244,4 +225,5 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
+-->
 @endsection
