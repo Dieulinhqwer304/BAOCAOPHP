@@ -5,7 +5,7 @@
 
     <div class="body__mainTitle">
         <h2>Từ khóa đã tìm kiếm: {{ $tukhoa }}</h2>
-    </div>    
+    </div>
 
     <div>
         <div class="row">
@@ -19,7 +19,7 @@
                         <div class="product__sale">
                             <div>
                                 @if($search->giamgia)
-                                    -{{$search->giamgia}}%
+                                -{{$search->giamgia}}%
                                 @else Mới
                                 @endif
                             </div>
@@ -50,31 +50,42 @@
                         </div>
                     </div>
                 </a>
-            </div>      
+            </div>
             @endforeach
         </div>
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <li class="page-item @if($searchs->currentPage() === 1) disabled @endif">
-                    <a class="page-link" href="{{ $searchs->url(1) }}&tukhoa={{ $tukhoa }}">First</a>
+                    <a class="page-link" href="{{ $searchs->appends(request()->query())->url(1) }}">
+                        &laquo;&laquo;
+                    </a>
                 </li>
                 <li class="page-item @if($searchs->currentPage() === 1) disabled @endif">
-                    <a class="page-link" href="{{ $searchs->previousPageUrl() }}&tukhoa={{ $tukhoa }}">Previous</a>
+                    <a class="page-link" href="{{ $searchs->appends(request()->query())->previousPageUrl() }}">
+                        &laquo;
+                    </a>
                 </li>
+
                 @for ($i = 1; $i <= $searchs->lastPage(); $i++)
                     <li class="page-item @if($searchs->currentPage() === $i) active @endif">
-                        <a class="page-link" href="{{ $searchs->url($i) }}&tukhoa={{ $tukhoa }}">{{ $i }}</a>
+                        <a class="page-link" href="{{ $searchs->appends(request()->query())->url($i) }}">
+                            {{ $i }}
+                        </a>
                     </li>
-                @endfor
-                <li class="page-item @if($searchs->currentPage() === $searchs->lastPage()) disabled @endif">
-                    <a class="page-link" href="{{ $searchs->nextPageUrl() }}&tukhoa={{ $tukhoa }}">Next</a>
-                </li>
-                <li class="page-item @if($searchs->currentPage() === $searchs->lastPage()) disabled @endif">
-                    <a class="page-link" href="{{ $searchs->url($searchs->lastPage()) }}&tukhoa={{ $tukhoa }}">Last</a>
-                </li>
+                    @endfor
+
+                    <li class="page-item @if($searchs->currentPage() === $searchs->lastPage()) disabled @endif">
+                        <a class="page-link" href="{{ $searchs->appends(request()->query())->nextPageUrl() }}">
+                            &raquo;
+                        </a>
+                    </li>
+                    <li class="page-item @if($searchs->currentPage() === $searchs->lastPage()) disabled @endif">
+                        <a class="page-link" href="{{ $searchs->appends(request()->query())->url($searchs->lastPage()) }}">
+                            &raquo;&raquo;
+                        </a>
+                    </li>
             </ul>
         </nav>
-        
     </div>
 
 </div>

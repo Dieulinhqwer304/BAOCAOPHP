@@ -44,7 +44,7 @@ class SanphamRepository implements ISanphamRepository
     public function searchProduct(Request $request)
     {
         $searchKeyword = $request->input('tukhoa');
-        $loai = $request->input('loai');
+        $danhmuc_id = $request->input('danhmuc_id');
 
         $query = Sanpham::with('danhmuc');
 
@@ -52,8 +52,8 @@ class SanphamRepository implements ISanphamRepository
             $query->where('tensp', 'like', '%' . $searchKeyword . '%');
         }
 
-        if ($loai) {
-            $query->where('id_danhmuc', $loai);
+        if ($danhmuc_id) {
+            $query->where('id_danhmuc', $danhmuc_id);
         }
 
         return $query->paginate(5);
@@ -65,11 +65,11 @@ class SanphamRepository implements ISanphamRepository
             ->paginate(10);
     }
 /* Lấy danh sách sản phẩm theo danh mục */
-    public function getAllByDanhMuc(Request $request)
+    public function getAllByDanhMuc($request)
     {
-        $query = Sanpham::with('danhmuc');
+        $query = Sanpham::query();
         if ($request->has('danhmuc_id')) {
-            $query->where('id_danhmuc', $request->input('danhmuc_id'));
+            $query->where('id_danhmuc', $request->danhmuc_id);
         }
         return $query->paginate(10);
     }

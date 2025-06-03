@@ -156,7 +156,7 @@
                     data.forEach(dm => {
                         const li = document.createElement('li');
                         const a = document.createElement('a');
-                        a.href = `/viewAll?loai=${dm.id_danhmuc}`;
+                        a.href = `/viewAll?danhmuc_id=${dm.id_danhmuc}`;
                         a.textContent = dm.ten_danhmuc;
                         li.appendChild(a);
                         ul.appendChild(li);
