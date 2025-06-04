@@ -27,7 +27,7 @@
 
         <div class="row">
             <div class="post-wrapper2">
-                @foreach($alls->take(10) as $all)
+                @foreach($alls->take(10) as $sanpham)
                 <div class="col-lg-2_5 col-md-4 col-6 post2">
                     <a href="{{ route('detail', ['id' => $sanpham->id_sanpham]) }}">
                         <div class="product">
@@ -311,7 +311,7 @@
 </div>
 
 <!-- Tất cả sản phẩm -->
-<div class="body">
+<!-- <div class="body">
     <div class="body__mainTitle">
         <h2>TẤT CẢ SẢN PHẨM</h2>
     </div>
@@ -366,6 +366,6 @@
             <a href="{{ route('viewAll') }}" class="btn text-white" style="background: #ff4500;">Xem thêm</a>
         </center>
     </div>
-</div>
+</div> -->
 
 @endsection

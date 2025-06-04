@@ -990,23 +990,23 @@ i.fas.fa-chevron-up {
 footer {
     background-color: rgb(46 46 46);
 }
-.footer,
+/* .footer,
 .footer__copyright {
     height: 60px;
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-}
+} */
 .footer__title {
     display: flex;
     justify-content: space-between;
     width: 70%;
     margin: 0 auto;
 }
-.footer__copyright {
+/* .footer__copyright {
     background: #363636;
-}
+} */
 .footer__info {
     display: flex;
     justify-content: space-between;
@@ -1020,8 +1020,7 @@ footer {
     padding: 10px 0;
 }
 .footer__info-content > p {
-    line-height: 30px;
-    padding: 10px 0;
+    line-height: auto;
 }
 .footer__info-content > p > a {
     text-decoration: none;
@@ -1389,7 +1388,7 @@ footer {
 footer {
   background-color: #1e1e1e;
   color: #eee;
-  padding: 50px 20px 30px;
+  padding-top: 1px;
   font-size: 15px;
   line-height: 1.6;
   font-family: 'Segoe UI', sans-serif;
@@ -1473,12 +1472,11 @@ footer {
 .footer__info-content:last-child {
   margin-right: auto;
 }
-
 .footer__copyright {
-  margin-top: 40px;
+  /* margin-top: 40px; */
   text-align: center;
   font-size: 13px;
   border-top: 1px solid #333;
-  padding-top: 15px;
+  /* padding-top: 15px; */
   color: #aaa;
 }

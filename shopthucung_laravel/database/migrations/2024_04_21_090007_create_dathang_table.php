@@ -21,6 +21,9 @@ return new class extends Migration
             $table->string('phuongthucthanhtoan', 10);
             $table->string('diachigiaohang', 100)->nullable();
             $table->string('trangthai', 100)->nullable();
+            $table->string('hoten', 100)->nullable();
+            $table->integer('sdt', 11)->nullable();
+            $table->string('email', 100)->nullable();
             $table->integer('id_kh');
             $table->index('id_dathang'); // Add index to id_dathang
         });
