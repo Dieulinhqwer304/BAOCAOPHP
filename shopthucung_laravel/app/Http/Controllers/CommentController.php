@@ -41,7 +41,7 @@ class CommentController extends Controller
         }
 
         $comment = Comment::create([
-            'user_id' => Auth::id(),
+            'user_id' => Auth::user()->id_kh,
             'sanpham_id' => $request->sanpham_id,
             'content' => $request->content,
         ]);
