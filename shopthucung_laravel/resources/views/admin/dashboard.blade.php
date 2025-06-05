@@ -130,7 +130,7 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Phương thức tt</th>
+                  <th>Phương thức thanh toán</th>
                   <th>Ngày đặt</th>
                   <th>Ngày giao</th>
                   <th>Trạng thái</th>
@@ -142,7 +142,7 @@
                 @foreach($getOrderView as $order)
                 <tr>
                   <td>{{$order->id_dathang}}</td>
-          
+
                   @if ($order->phuongthucthanhtoan == "COD")
                     <td class="d-none d-xl-table-cell"><div class="badge bg-secondary">{{$order->phuongthucthanhtoan}}</div></td>
                   @elseif ($order->phuongthucthanhtoan == "VNPAY")
@@ -150,7 +150,7 @@
                   @else
                   <td class="d-none d-xl-table-cell">{{$order->phuongthucthanhtoan}}</td>
                   @endif
-          
+
                   <td class="d-none d-xl-table-cell">{{$order->ngaydathang}}</td>
                     @if ($order->ngaygiaohang)
                       <td class="d-none d-xl-table-cell">{{ date('d/m/Y', strtotime($order->ngaygiaohang)) }}</td>
@@ -180,10 +180,10 @@
           </div>
         </div>
 
-       
+
     </div>
 
-   
+
 
   </div>
 @endsection

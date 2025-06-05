@@ -17,7 +17,7 @@
     <thead>
       <tr>
         <th>ID</th>
-        <th>Phương thức tt</th>
+        <th>Phương thức thanh toán</th>
         <th>Ngày đặt</th>
         <th>Ngày giao</th>
         <th>Trạng thái</th>

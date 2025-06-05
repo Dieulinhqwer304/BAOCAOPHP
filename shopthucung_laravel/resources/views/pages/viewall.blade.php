@@ -2,7 +2,6 @@
 @section('content')
 <!-- Tất cả sản phẩm -->
 <div class="body">
-
     <div class="body__mainTitle">
         <h2>
             @php
@@ -85,4 +84,5 @@
         </div>
 
     </div>
-    @endsection
+</div>
+@endsection

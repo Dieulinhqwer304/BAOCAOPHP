@@ -101,11 +101,14 @@
 
 
         @if(Auth::check())
-        <form id="commentForm">
+        <form id="commentForm" style="margin-top: 20px;">
             @csrf
             <input type="hidden" name="sanpham_id" value="{{ $sanpham->id_sanpham }}">
-            <textarea name="content" placeholder="Viết bình luận..." rows="2" required></textarea>
-            <button type="submit" class="btn-submit">Gửi</button>
+
+            <div class="comment-box">
+                <textarea name="content" placeholder="Viết bình luận..." rows="3" required></textarea>
+                <button type="submit" class="btn-submit">Gửi bình luận</button>
+            </div>
         </form>
         @else
         <p>Bạn cần <a href="{{ route('login') }}">đăng nhập</a> để bình luận.</p>
@@ -116,9 +119,11 @@
             <div class="comment-item" data-id="{{ $comment->id }}">
                 <img src="{{ asset('frontend/img/user.jpg') }}" alt="Avatar" class="avatar" />
                 <div class="comment-content">
-                    <b>{{ $comment->user->name }}</b>
+                    <div class="comment-header">
+                        <b class="username">{{ $comment->user->hoten }}</b>
+                        <small class="time-text">{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</small>
+                    </div>
                     <p class="content-text">{{ $comment->content }}</p>
-                    <small class="time-text">{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</small>
 
                     @if(Auth::id() == $comment->user_id)
                     <div class="comment-actions">
@@ -164,7 +169,7 @@
                     <div class="comment-item" data-id="${comment.id}">
                         <img src="{{ asset('frontend/img/user.jpg') }}" alt="Avatar" class="avatar" />
                         <div class="comment-content">
-                            <b>${comment.user.name}</b>
+                            <b>${comment.user.hoten}</b>
                             <p class="content-text">${comment.content}</p>
                             <small class="time-text">vừa xong</small>
                             <div class="comment-actions">
@@ -176,7 +181,13 @@
                             commentsList.insertAdjacentHTML('afterbegin', html);
                             this.content.value = '';
                         } else {
-                            alert('Gửi bình luận thất bại');
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Thất bại',
+                                text: `${data.message || 'Bình luận không thành công'}`,
+                                timer: 3000,
+                                showConfirmButton: false
+                            });
                         }
                     });
             });
@@ -253,7 +264,6 @@
                 }
             });
         });
-
     </script>
-@endsection
-
+</div>
+    @endsection
