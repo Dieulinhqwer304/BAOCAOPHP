@@ -42,9 +42,10 @@
             </div>
 
             <form action="" method="POST">
+                @if ($sanpham->soluong > 0)
                 <div class="number">
                     <span>
-                        Số lượng
+                        Số lượng:
                         <span class="number__count">{{ $sanpham->soluong }}</span>
                     </span>
                 </div>
@@ -57,6 +58,11 @@
                         Mua ngay
                     </a>
                 </div>
+                @else
+                <div class="text-danger fw-bold" style="font-size: 16px; margin-top: 10px;">
+                    Sản phẩm đã hết trong kho
+                </div>
+                @endif
             </form>
         </div>
 
@@ -185,7 +191,7 @@
                                 icon: 'error',
                                 title: 'Thất bại',
                                 text: `${data.message || 'Bình luận không thành công'}`,
-                                timer: 3000,
+                                timer: 2000,
                                 showConfirmButton: false
                             });
                         }
@@ -266,4 +272,4 @@
         });
     </script>
 </div>
-    @endsection
+@endsection

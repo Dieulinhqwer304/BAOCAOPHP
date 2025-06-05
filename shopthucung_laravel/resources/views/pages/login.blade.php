@@ -1,19 +1,8 @@
 @extends('layout')
 @section('content')
 <!--Main-->
-@if (session('error'))
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        Swal.fire({
-            icon: 'error',
-            title: 'Đăng nhập thất bại',
-            text:'Tài khoản hoặc mật khẩu không chính xác.',
-            timer: 3000,
-            showConfirmButton: false
-        });
-    });
-</script>
-@endif
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <div class="login-form">
     <div class="height360">
         <div class="main">
@@ -47,4 +36,15 @@
         </div>
     </div>
 </div>
+@if(session('error'))
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Đăng nhập thất bại',
+        text: "{{ session('error') }}",
+        timer: 3000,
+        showConfirmButton: false
+    });
+</script>
+@endif
 @endsection

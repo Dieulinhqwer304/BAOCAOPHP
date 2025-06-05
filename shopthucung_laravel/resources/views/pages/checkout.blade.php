@@ -168,6 +168,18 @@
 </div>
 @endif
 @endforeach
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if(session('error'))
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Đặt hàng thất bại',
+        text: "{{ session('error') }}",
+        timer: 2000,
+        showConfirmButton: false
+    });
+</script>
+@endif
 <script>
     $(document).ready(function() {
         $('#updateInfoForm').on('submit', function(e) {
@@ -192,7 +204,7 @@
                 icon: 'success',
                 title: 'Thành công',
                 text: 'Thông tin đã được cập nhật!',
-                timer: 3000,
+                timer: 2000,
                 showConfirmButton: false
             });
             // alert('Thông tin đã được cập nhật!');
