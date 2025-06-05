@@ -181,7 +181,13 @@
                             commentsList.insertAdjacentHTML('afterbegin', html);
                             this.content.value = '';
                         } else {
-                            alert('Gửi bình luận thất bại');
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Thất bại',
+                                text: `${data.message || 'Bình luận không thành công'}`,
+                                timer: 3000,
+                                showConfirmButton: false
+                            });
                         }
                     });
             });
@@ -259,4 +265,5 @@
             });
         });
     </script>
+</div>
     @endsection

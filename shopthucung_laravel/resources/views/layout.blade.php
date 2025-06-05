@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý cửa hàng thú cưng</title>
-    <link rel="shortcut icon" type="image/png" href="{{ asset('frontend/img/LOGO.png')}}" />
+    <title>Quản lý cửa hàng túi xách</title>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('frontend/img/icon.png')}}" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -21,7 +21,7 @@
 
 </head>
 
-<body>
+<body style="margin: 0; min-height: 100vh; display: flex; flex-direction: column;"> 
     <div class="header">
 
         <div class="navbar">
@@ -95,7 +95,9 @@
     </div>
 
     <!-- Content -->
-    @yield('content')
+    <div style="flex:1">
+        @yield('content')
+    </div>
 
     <div class="go-to-top"><i class="fas fa-chevron-up"></i></div>
 
@@ -103,16 +105,6 @@
     <div class="go-to-top"><i class="fas fa-chevron-up"></i></div>
 
     <footer>
-        <!-- <div class="footer">
-    <div class="footer__title">
-      <span>Liên hệ với chúng tôi</span>
-      <div class="footer__social">
-        <a href="https://facebook.com/trieuetam" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/tai_khoan_cua_ban" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-google"></i></a>
-      </div>
-    </div>
-  </div> -->
 
         <div class="footer__info">
             <div class="footer__info-content">

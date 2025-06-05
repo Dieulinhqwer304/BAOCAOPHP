@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2025 at 11:09 PM
+-- Generation Time: Jun 04, 2025 at 08:25 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `larave`
 --
+CREATE DATABASE IF NOT EXISTS `larave` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `larave`;
 
 -- --------------------------------------------------------
 
@@ -32,19 +34,12 @@ CREATE TABLE `chitiet_donhang` (
   `tensp` varchar(100) NOT NULL,
   `soluong` tinyint(4) DEFAULT NULL,
   `giamgia` int(11) DEFAULT NULL,
-  `giatien` int(11) DEFAULT NULL,
+  `giatien` bigint(111) DEFAULT NULL,
   `giakhuyenmai` int(11) DEFAULT NULL,
   `id_sanpham` int(11) NOT NULL,
   `id_dathang` int(10) UNSIGNED NOT NULL,
   `id_kh` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `chitiet_donhang`
---
-
-INSERT INTO `chitiet_donhang` (`id_ctdonhang`, `tensp`, `soluong`, `giamgia`, `giatien`, `giakhuyenmai`, `id_sanpham`, `id_dathang`, `id_kh`) VALUES
-(44, 'Túi Chanel 11.12', 1, 2, 273540000, 268069200, 29, 52, 6);
 
 -- --------------------------------------------------------
 
@@ -104,7 +99,7 @@ CREATE TABLE `dathang` (
   `id_dathang` int(10) UNSIGNED NOT NULL,
   `ngaydathang` datetime DEFAULT current_timestamp(),
   `ngaygiaohang` datetime DEFAULT current_timestamp(),
-  `tongtien` int(11) NOT NULL,
+  `tongtien` bigint(111) NOT NULL,
   `phuongthucthanhtoan` varchar(10) NOT NULL,
   `diachigiaohang` varchar(100) DEFAULT NULL,
   `hoten` varchar(100) DEFAULT NULL,
@@ -114,15 +109,6 @@ CREATE TABLE `dathang` (
   `id_kh` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `dathang`
---
-
-INSERT INTO `dathang` (`id_dathang`, `ngaydathang`, `ngaygiaohang`, `tongtien`, `phuongthucthanhtoan`, `diachigiaohang`, `hoten`, `email`, `sdt`, `trangthai`, `id_kh`) VALUES
-(51, '2025-06-05 03:58:49', '2025-06-08 20:58:49', 0, 'COD', 'Phùng Khoang', 'Lê Thạc Thao', 'thaolethac2121@gmail.com', 396865496, 'đang xử lý', 6),
-(52, '2025-06-05 04:01:24', '2025-06-08 21:01:24', 268069200, 'COD', 'Phùng Khoang', 'Lê Thạc Thao', 'thaolethac2121@gmail.com', 396865496, 'đang xử lý', 6);
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `khachhang`
@@ -146,9 +132,10 @@ INSERT INTO `khachhang` (`id_kh`, `hoten`, `email`, `password`, `diachi`, `sdt`,
 (1, 'teo', 'teo@gmail.com', '$2y$12$o42vmZrn2TzpqtP0NJ/VyOd0qgv2coPm76eyZ/ZNwUgBHNUUW6H2y', 'Đống Đa, Hà nội', 379487241, 2),
 (2, 'admin', 'admin@gmail.com', '$2y$12$/NpqKoSr.zwBa83nJfw8KuHTYjVmH51H/boJ.CxtIR8Sn/tTVg.NS', 'Đống Đa, Hà nội', 379487352, 1),
 (3, 'demotk', 'demotk@gmail.com', '$2y$12$z66Zyr0M/Ag7j6iQZvwjjuuqL4yQP/k68uo3Cmq0kxKghvuQFzjpK', 'demotk', 364877529, 2),
-(4, 'dieulinh', 'dlinh30042004@gmail.com', '$2y$12$/NpqKoSr.zwBa83nJfw8KuHTYjVmH51H/boJ.CxtIR8Sn/tTVg.NS', '102aaaa', 359723803, 1),
+(4, 'dieulinh', 'dlinh30042004@gmail.com', '$2y$12$/NpqKoSr.zwBa83nJfw8KuHTYjVmH51H/boJ.CxtIR8Sn/tTVg.NS', '102', 359723803, 1),
 (5, 'hoà nguyễn', 'hoacutehd2003@gmail.com', '$2y$12$ebsDSfsT/w/yLAyfHmqkr.m8TuEhy4CY4VhCqaibCspDj742B4sx2', 'Chùa Bộc', 364273858, 2),
-(6, 'Lê Thạc Thao', 'thaolethac2121@gmail.com', '$2y$12$Q.gghgbTL77OnsyKq.gPRuJ7BGsyypKo8c/PLHpwFhCWOd6MDd.m2', 'Phùng Khoang', 396865496, 2);
+(6, 'Lê Thị Kim Oanh', 'oanhcute6c@gmail.com', '$2y$12$LMbc0gU1wFNgqYkiEnEsquUSfKQ/ZFwa5W9Mrvl9qbESU9AnTu/EW', 'Nghệ An', 943377126, 2),
+(7, 'Phan Tuan', 'anhtuana1k99@gmail.com', '$2y$12$xx3yBmp4PilqSha2Ydf1V.ZnjnDOCulSGZB3hMucaDwsw0q58q8Ay', 'hanoi', 943377126, 2);
 
 -- --------------------------------------------------------
 
@@ -176,7 +163,28 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2024_04_21_090010_add_foreign_keys_to_sanpham_table', 1),
 (8, '2024_04_21_092420_add_foreign_key_to_chitiet_donhang_table', 1),
 (9, '2024_04_22_080854_create_khachhang_table', 1),
-(10, '2024_04_22_080855_add_foreign_keys_to_khachhang_table', 1);
+(10, '2024_04_22_080855_add_foreign_keys_to_khachhang_table', 1),
+(11, '2025_05_27_091851_create_password_resets_table', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('hoacutehd2003@gmail.com', 'hbrCrJ4CrlrBfABYv7IyotrfhTE2eKPrQQULfGUlJSnJy0sXLVbUkIogN9HnUc2T', '2025-06-02 01:19:08'),
+('oanhcute6c@gmail.com', 'tMGQ2akl0jKvjvZsDLMnYf0SZaW3tQgYs1mcVv54FqWEo0zB7zQ61oUOi9llvDaY', '2025-06-02 02:38:43');
 
 -- --------------------------------------------------------
 
@@ -227,7 +235,7 @@ CREATE TABLE `sanpham` (
   `id_sanpham` int(11) NOT NULL,
   `tensp` varchar(100) DEFAULT NULL,
   `anhsp` varchar(255) DEFAULT NULL,
-  `giasp` int(11) DEFAULT NULL,
+  `giasp` bigint(11) DEFAULT NULL,
   `mota` text DEFAULT NULL,
   `giamgia` int(11) DEFAULT NULL,
   `giakhuyenmai` int(11) DEFAULT NULL,
@@ -317,6 +325,12 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
 -- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
@@ -345,7 +359,7 @@ ALTER TABLE `sanpham`
 -- AUTO_INCREMENT for table `chitiet_donhang`
 --
 ALTER TABLE `chitiet_donhang`
-  MODIFY `id_ctdonhang` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id_ctdonhang` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -363,19 +377,19 @@ ALTER TABLE `danhmuc`
 -- AUTO_INCREMENT for table `dathang`
 --
 ALTER TABLE `dathang`
-  MODIFY `id_dathang` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id_dathang` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `khachhang`
 --
 ALTER TABLE `khachhang`
-  MODIFY `id_kh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_kh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
