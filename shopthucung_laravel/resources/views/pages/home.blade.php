@@ -27,7 +27,7 @@
 
         <div class="row">
             <div class="post-wrapper2">
-                @foreach($alls->take(10) as $all)
+                @foreach($alls->take(10) as $sanpham)
                 <div class="col-lg-2_5 col-md-4 col-6 post2">
                     <a href="{{ route('detail', ['id' => $sanpham->id_sanpham]) }}">
                         <div class="product">
@@ -317,7 +317,7 @@
     </div>
     <div>
         <div class="row">
-            @foreach($alls->take(10) as $all)
+            @foreach($alls as $all)
             <div class="col-lg-2_5 col-md-4 col-6 post2">
                 <a href="{{ route('detail', ['id' => $all->id_sanpham]) }}">
                     <div class="product">
