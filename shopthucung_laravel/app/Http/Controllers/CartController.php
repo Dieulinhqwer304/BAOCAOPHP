@@ -186,7 +186,7 @@ class CartController extends Controller
             $soluongconlai = $sanpham->soluong - $soluongDaBan;
 
             if ($item['quantity'] > $soluongconlai) {
-                return redirect()->back()->with('error', 'Sản phẩm không còn đủ số lượng trong kho!');
+                return redirect()->back()->with('error', "Sản phẩm {$sanpham->tensp} không còn đủ số lượng trong kho!");
             }
         }
 

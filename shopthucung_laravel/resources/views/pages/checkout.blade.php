@@ -175,7 +175,7 @@
         icon: 'error',
         title: 'Đặt hàng thất bại',
         text: "{{ session('error') }}",
-        timer: 2000,
+        timer: 3000,
         showConfirmButton: false
     });
 </script>
