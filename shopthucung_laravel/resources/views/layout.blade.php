@@ -21,7 +21,7 @@
 
 </head>
 
-<body style="margin: 0; min-height: 100vh; display: flex; flex-direction: column;"> 
+<body style="margin: 0; min-height: 100vh; display: flex; flex-direction: column;">
     <div class="header">
 
         <div class="navbar">
@@ -66,12 +66,15 @@
                 <span class="mr-2">{{Auth::user()->hoten}}</span>
 
                 <div class="logout">
-                    <form action="{{ route('logout') }}" method="POST">
+                    <form id="logoutForm" action="{{ route('logout') }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button style="border: none;" type="submit"><i class="fas fa-sign-out-alt text-primary"></i></button>
+                        <button style="border: none; background: transparent; cursor: pointer;" type="submit" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt text-primary" style="font-size: 20px;"></i>
+                        </button>
                     </form>
                 </div>
+
                 @else
                 <!-- Hiển thị nút login -->
                 <div class="login">
@@ -163,6 +166,26 @@
                     danhMucLoaded = true;
                 })
                 .catch(error => console.error('Lỗi khi tải danh mục:', error));
+        });
+    </script>
+    <script>
+        document.getElementById('logoutForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Đăng xuất?',
+                text: "Bạn có chắc chắn muốn đăng xuất không?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Đăng xuất',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    e.target.submit();
+                }
+            });
         });
     </script>
     <script>

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Sanpham;
 use App\Models\Danhmuc;
 use App\Repositories\ISanphamRepository;
-
+use DB;
 class HomeController extends Controller
 {
     private $sanphamRepository;
@@ -42,11 +42,15 @@ class HomeController extends Controller
 
     public function detail($id) {
         $sanpham = Sanpham::findOrFail($id);
+        $soluongDaBan = DB::table('chitiet_donhang')
+        ->where('id_sanpham', $id)
+        ->sum('soluong');
+         $sanpham->soluong = max($sanpham->soluong - $soluongDaBan, 0);
         $randoms = $this->sanphamRepository->randomProduct()->take(5);
         $comments = \App\Models\Comment::where('sanpham_id', $id)->with('user')->get();
 
         return view('pages.detail', [
-            'sanpham' => $sanpham, 
+            'sanpham' => $sanpham,
             'randoms' => $randoms,
             'comments' => $comments,
         ]);

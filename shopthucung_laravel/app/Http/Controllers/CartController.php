@@ -174,6 +174,21 @@ class CartController extends Controller
         $validatedDataDatHang['id_kh'] = Auth::user()->id_kh;
         $dathangCre = Dathang::create($validatedDataDatHang);
         $validatedDataCTDatHang = $request->validate([]);
+        if (!session()->has('cart') || empty(session('cart'))) {
+            return redirect()->back()->with('error', 'Không có đơn hàng để đặt!');
+        }
+
+        foreach (session('cart') as $item) {
+            $sanpham = Sanpham::findOrFail($item['id_sanpham']);
+            $soluongDaBan = DB::table('chitiet_donhang')
+                ->where('id_sanpham', $item['id_sanpham'])
+                ->sum('soluong');
+            $soluongconlai = $sanpham->soluong - $soluongDaBan;
+
+            if ($item['quantity'] > $soluongconlai) {
+                return redirect()->back()->with('error', 'Sản phẩm không còn đủ số lượng trong kho!');
+            }
+        }
 
         foreach (session('cart') as $item) {
             $validatedDataCTDatHang['tensp'] = $item['tensp'];

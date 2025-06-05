@@ -9,13 +9,16 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('pages.login');
     }
-    public function register(){
+    public function register()
+    {
         return view('pages.register');
     }
-    public function registerPost(Request $request){
+    public function registerPost(Request $request)
+    {
         $kh = new Khachhang();
         $kh->hoten = $request->name;
         $kh->email = $request->email;
@@ -27,21 +30,28 @@ class AuthController extends Controller
         return back()->with('thongbao', 'Đăng ký tài khoản thành công');
     }
 
-    public function loginPost(Request $request){
+    public function loginPost(Request $request)
+    {
         $credetials = [
             'email' => $request->email,
             'password' => $request->password
         ];
 
-        if(Auth::attempt($credetials)){
+        if (Auth::attempt($credetials)) {
             return redirect('/')->with('thongbao', 'Đăng nhập thành công');
         }
 
-        return back()->with('error', 'Sai tên tài khoản hoặc mật khẩu');
+        return redirect()->back()->with('error', 'Sai tên đăng nhập hoặc mật khẩu!');;
     }
 
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
         return redirect('/');
+    }
+    public function kiemTraEmail(Request $request)
+    {
+        $exists = KhachHang::where('email', $request->email)->exists();
+        return response()->json(['exists' => $exists]);
     }
 }

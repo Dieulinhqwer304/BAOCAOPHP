@@ -175,35 +175,6 @@
 </div>
 
 <script>
-    // $(document).ready(function() {
-    //     $('#updateInfoForm').on('submit', function(e) {
-    //         e.preventDefault();
-
-    //         var hoten = $('#hoten').val();
-    //         var email = $('#email').val();
-    //         var sdt = $('#sdt').val();
-    //         var diachi = $('#diachi').val();
-
-    //         $('#display_hoten').text(hoten);
-    //         $('#display_email').text(email);
-    //         $('#display_sdt').text(sdt);
-    //         $('#display_diachigiaohang').text(diachi);
-    //         $('#input_hoten').val(hoten);
-    //         $('#input_email').val(email);
-    //         $('#input_sdt').val(sdt);
-    //         $('#input_diachigiaohang').val(diachi);
-
-    //         $('#updateInfoModal').modal('hide');
-    //         Swal.fire({
-    //             icon: 'success',
-    //             title: 'Thành công',
-    //             text: 'Thông tin đã được cập nhật!',
-    //             timer: 3000,
-    //             showConfirmButton: false
-    //         });
-    //         // alert('Thông tin đã được cập nhật!');
-    //     });
-    // })
     //cod
     $('#cod').click(function() {
         // $('#cod').attr('value', 'COD');
